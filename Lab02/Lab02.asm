@@ -19,7 +19,7 @@ main:
     addi $t7, $zero, 0      # Me-reserve $t7 untuk jumlah mobil
 
     #################################################################
-    #                           Meminta Input                       #
+    #                         Meminta Input                         #
     #################################################################
 
     li $v0, 4               # Load pesan meminta NPM
@@ -37,7 +37,7 @@ main:
 
     addi $t2, $zero, 0      # Me-reserve $t2 untuk kondisional loop
 
-    partition_loop:
+    partitionLoop:
         div $t1, $t1, 100   # Membagi NPM dengan 100
         mflo $t1            # Hasil disimpan kembali ke $t1
         mfhi $t3            # Sisa bagi dimasukkan ke array nanti
@@ -46,14 +46,14 @@ main:
         addi $t0, $t0, 4    # Memindahkan pointer
         addi $t2, $t2, 1    # Menambah $t2 untuk kondisional loop
 
-        bne $t2, 5, partition_loop
+        bne $t2, 5, partitionLoop
         
     
     #################################################################
     #                       Processing array                        #
     #################################################################
 
-    sum_loop:
+    sumLoop:
         subi $t0, $t0, 4    # Memindahkan pointer
         lw $a0, 0($t0)      # Me-load angka yang ada di pointer
 
@@ -66,7 +66,7 @@ main:
 
         subi $t2, $t2, 1    # Mengurangi $t2 untuk kondisional loop
 
-        bne $t2, 0, sum_loop
+        bne $t2, 0, sumLoop
 
     
     #################################################################
